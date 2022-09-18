@@ -12,6 +12,9 @@ export class App extends Component {
   };
 
   addContact = (contact) => {
+    if (this.isDuplicate(contact)) {
+      return alert(`${contact.name} is already in Phonebook List`);
+    }
     this.setState((prev) => {
       const newContact = {   
         ...contact,
@@ -55,6 +58,12 @@ export class App extends Component {
       return resultFilter;
     })
     return filterContacts;
+  }
+
+  isDuplicate = (contact) => {
+    const {contacts } = this.state;
+    const result = contacts.find((item) => item.name === contact.name);
+    return result;
   }
 
   render() {
