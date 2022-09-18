@@ -8,6 +8,7 @@ export class App extends Component {
  
   state = {
     contacts: [],
+    filter: ''
   };
 
   addContact = (contact) => {
@@ -21,13 +22,44 @@ export class App extends Component {
       }
     })
   }
+
+  removeContact = (id) => {
+    this.setState((prev) => {
+        const newContacts = prev.contacts.filter((item) => item.id !== id);
+
+        return {
+            contacts: newContacts
+        }
+    })
+  }
+
+  handleChangeFilter = (e) => {
+        const { name, value } = e.target; 
+        this.setState({
+            [name]: value,
+        })
+        console.log(this.state.filter);
+    }
   
-  filterContact = (searchName) => {
-    
+  filterContact() {
+    const { contacts, filter } = this.state;
+    console.log(filter);
+    const filterNormolaze = filter.toLocaleLowerCase();
+
+    if (!filter) {
+      return contacts;
+    }     
+    const filterContacts = contacts.filter( ({name}) => {
+      const nameContactNormolaze = name.toLocaleLowerCase();
+      const resultFilter = nameContactNormolaze.includes(filterNormolaze);
+      return resultFilter;
+    })
+    return filterContacts;
   }
 
   render() {
-    const contacts = this.state.contacts;
+    const contacts = this.filterContact();
+    console.log(contacts);
     return (
     <div
       style={{
@@ -41,11 +73,9 @@ export class App extends Component {
         </div>
         <div>
           <h2>Contacts</h2>
-          <Contacts items={contacts} />
-        </div>
-        
-          <FilterContacts />
-        
+          <FilterContacts onFilter={this.handleChangeFilter} />
+          <Contacts items={contacts} removeContact={this.removeContact} />
+        </div>  
     </div>
   );
   }

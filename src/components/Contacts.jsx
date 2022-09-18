@@ -1,9 +1,11 @@
 
-export default function Contacts({ items }) {
+export default function Contacts({ items, removeContact }) {
     const elements = items.map(({ id, name, number }) => {
-        return <li key={id}> {name}: +38{number}</li>
+        return  <li key={id}> {name}: +38{number}
+                    <button type='button' onClick={() => removeContact(id)}> Delete
+                    </button>
+                </li>
     })
-    console.log(items);
     return (
             <ol>
                 {elements}
