@@ -17,7 +17,6 @@ export default class PhonebookForm extends Component {
     handleSubmitPhonebookForm = (e) => {
         e.preventDefault();
         const { name } = this.state;
-        console.log(this.state);
         this.props.onAddContact(this.state);
         this.setState({
             [name]: ''

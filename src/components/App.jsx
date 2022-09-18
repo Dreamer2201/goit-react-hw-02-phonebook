@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import PhonebookForm from './PhonebookForm';
 import Contacts from './Contacts';
+import FilterContacts from './FilterContacts';
 
 export class App extends Component {
  
@@ -21,6 +22,10 @@ export class App extends Component {
     })
   }
   
+  filterContact = (searchName) => {
+    
+  }
+
   render() {
     const contacts = this.state.contacts;
     return (
@@ -37,7 +42,10 @@ export class App extends Component {
         <div>
           <h2>Contacts</h2>
           <Contacts items={contacts} />
-          </div>
+        </div>
+        
+          <FilterContacts />
+        
     </div>
   );
   }
