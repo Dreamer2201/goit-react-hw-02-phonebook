@@ -6,7 +6,6 @@ import FilterContacts from '../FilterContacts';
 import { Title } from './AppStyled';
 
 export class App extends Component {
- 
   state = {
     contacts: [],
     filter: ''
@@ -30,7 +29,6 @@ export class App extends Component {
   deleteContact = (id) => {
     this.setState((prev) => {
       const newContacts = prev.contacts.filter((item) => item.id !== id);
-
       return {
         contacts: newContacts
       }
@@ -42,14 +40,11 @@ export class App extends Component {
     this.setState({
       [name]: value,
     })
-    console.log(this.state.filter);
   }
   
   filterContact() {
     const { contacts, filter } = this.state;
-    console.log(filter);
     const filterNormolaze = filter.toLocaleLowerCase();
-
     if (!filter) {
       return contacts;
     }
@@ -69,7 +64,6 @@ export class App extends Component {
 
   render() {
     const contacts = this.filterContact();
-    console.log(contacts);
     return (
       <div
         style={{

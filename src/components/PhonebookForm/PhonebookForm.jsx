@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import { Form, Btn } from './PhonebookFormStyled';
 import { InputName } from '../App/AppStyled';
 

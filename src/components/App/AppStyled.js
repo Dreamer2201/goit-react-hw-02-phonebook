@@ -6,6 +6,7 @@ const Title = styled.h2`
 `;
 const InputName = styled.label`
     margin: 10px;
+    padding: 4px;
     font-size: 24px;
     font-style: italic;
     text-shadow: #FA0 1px 0 10px;
