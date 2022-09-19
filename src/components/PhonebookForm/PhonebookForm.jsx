@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid'
-import { Form, InputName, Btn } from './Phonebook.styled';
+import { Form, Btn } from './PhonebookFormStyled';
+import { InputName } from '../App/AppStyled';
 
 export default class PhonebookForm extends Component {
     state = {
@@ -28,8 +29,7 @@ export default class PhonebookForm extends Component {
         const { handleSubmitPhonebookForm, handleChangeInput, contactNameId, contactTelNumId } = this;
         return (
             <Form onSubmit={handleSubmitPhonebookForm}>
-                <InputName htmlFor={contactNameId}>
-                    Name 
+                <InputName htmlFor={contactNameId}> Name </InputName>
                     <input
                         type="text"
                         name="name"
@@ -39,7 +39,6 @@ export default class PhonebookForm extends Component {
                         required
                         onChange={handleChangeInput}
                     />
-                </InputName>
                 <InputName htmlFor={contactTelNumId}>Tel.number</InputName>
                     <input
                         type="tel"

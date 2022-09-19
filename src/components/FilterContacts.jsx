@@ -1,10 +1,11 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import { InputName } from './App/AppStyled';
 
 export default function FilterContacts({ onFilter }) { 
     const filterId = nanoid();
     return (
         <div>
-            <label htmlFor={filterId}>Find contacts by name</label>
+            <InputName htmlFor={filterId}>Find contacts by name</InputName>
             <input
                 id={filterId}
                 type="text"

@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import PhonebookForm from './PhonebookForm';
-import Contacts from './Contacts';
-import FilterContacts from './FilterContacts';
+import PhonebookForm from '../PhonebookForm/PhonebookForm';
+import Contacts from '../Contacts/Contacts';
+import FilterContacts from '../FilterContacts';
+import { Title } from './AppStyled';
 
 export class App extends Component {
  
@@ -16,7 +17,7 @@ export class App extends Component {
       return alert(`${contact.name} is already in Phonebook List`);
     }
     this.setState((prev) => {
-      const newContact = {   
+      const newContact = {
         ...contact,
         id: nanoid(),
       }
@@ -26,23 +27,23 @@ export class App extends Component {
     })
   }
 
-  removeContact = (id) => {
+  deleteContact = (id) => {
     this.setState((prev) => {
-        const newContacts = prev.contacts.filter((item) => item.id !== id);
+      const newContacts = prev.contacts.filter((item) => item.id !== id);
 
-        return {
-            contacts: newContacts
-        }
+      return {
+        contacts: newContacts
+      }
     })
   }
 
   handleChangeFilter = (e) => {
-        const { name, value } = e.target; 
-        this.setState({
-            [name]: value,
-        })
-        console.log(this.state.filter);
-    }
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    })
+    console.log(this.state.filter);
+  }
   
   filterContact() {
     const { contacts, filter } = this.state;
@@ -51,8 +52,8 @@ export class App extends Component {
 
     if (!filter) {
       return contacts;
-    }     
-    const filterContacts = contacts.filter( ({name}) => {
+    }
+    const filterContacts = contacts.filter(({ name }) => {
       const nameContactNormolaze = name.toLocaleLowerCase();
       const resultFilter = nameContactNormolaze.includes(filterNormolaze);
       return resultFilter;
@@ -61,7 +62,7 @@ export class App extends Component {
   }
 
   isDuplicate = (contact) => {
-    const {contacts } = this.state;
+    const { contacts } = this.state;
     const result = contacts.find((item) => item.name === contact.name);
     return result;
   }
@@ -70,23 +71,22 @@ export class App extends Component {
     const contacts = this.filterContact();
     console.log(contacts);
     return (
-    <div
-      style={{
-        height: '100vh',
-        fontSize: 40,
-        color: '#010101'
-      }}
+      <div
+        style={{
+          height: '100vh',
+          fontSize: 40,
+          color: '#010101'
+        }}
       > <div>
-          <h2>Phonebook</h2>
+          <Title>Phonebook</Title>
           <PhonebookForm onAddContact={this.addContact} />
         </div>
         <div>
-          <h2>Contacts</h2>
+          <Title>Contacts</Title>
           <FilterContacts onFilter={this.handleChangeFilter} />
-          <Contacts items={contacts} removeContact={this.removeContact} />
-        </div>  
-    </div>
-  );
+          <Contacts items={contacts} deleteContact={this.deleteContact} />
+        </div>
+      </div>
+    );
   }
-  
 };
