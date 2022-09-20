@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { nanoid } from 'nanoid';
 import { InputName } from './App/AppStyled';
 
@@ -14,4 +15,8 @@ export default function FilterContacts({ onFilter }) {
             />
         </div>      
     )
-    }
+}
+    
+FilterContacts.propTypes = {
+    onFilter: PropTypes.func,
+}
