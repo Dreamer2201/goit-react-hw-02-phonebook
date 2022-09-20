@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import PhonebookForm from '../PhonebookForm/PhonebookForm';
 import Contacts from '../Contacts/Contacts';
 import FilterContacts from '../FilterContacts';
-import { Title } from './AppStyled';
+import { Wrapper,Title } from './AppStyled';
 
 export class App extends Component {
   state = {
@@ -65,13 +65,8 @@ export class App extends Component {
   render() {
     const contacts = this.filterContact();
     return (
-      <div
-        style={{
-          height: '100vh',
-          fontSize: 40,
-          color: '#010101'
-        }}
-      > <div>
+      <Wrapper>
+        <div>
           <Title>Phonebook</Title>
           <PhonebookForm onAddContact={this.addContact} />
         </div>
@@ -80,7 +75,7 @@ export class App extends Component {
           <FilterContacts onFilter={this.handleChangeFilter} />
           <Contacts items={contacts} deleteContact={this.deleteContact} />
         </div>
-      </div>
+      </Wrapper>
     );
   }
 };
